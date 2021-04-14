@@ -1,0 +1,35 @@
+*{
+  font-family: Arial, Helvetica, sans-serif;
+}
+form img {
+  margin: 10px 0
+}
+form div {
+  margin-bottom: 5px;
+}
+form input {
+  border: none;
+  border-bottom: 1px solid gray;
+}
+form input:focus{
+  outline: none;
+}
+.buttons {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 15px;
+}
+.buttons button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0 10px;
+}
+.buttons button:focus{
+  outline: none;
+}
+.buttons img {
+  width: 20px;
+  margin: 0;
+  border: none;
+}

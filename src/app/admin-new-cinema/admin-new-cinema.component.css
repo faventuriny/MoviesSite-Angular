@@ -1,0 +1,48 @@
+.general {
+  display: flex;
+  justify-content: center;
+}
+.inner {
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+  border: 2px solid #457B9D;
+  box-shadow: 2px 4px 8px #888888;
+}
+.title {
+  background: #457B9D;
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 1.5rem;
+}
+.form{
+  margin: 20px;
+  font-size: 1.2rem;
+}
+.form input {
+  color: #457B9D;
+  font-size: 1.3rem;
+}
+span {
+  color: red;
+  font-size: 0.9rem;
+}
+.must{
+  color: red;
+  margin-top: 20px;
+}
+.must span {
+  font-size: 1.2rem;
+}
+.buttons {
+  justify-content: center;
+  margin-top: 30px;
+}
+.buttons button:disabled {
+cursor: not-allowed;
+}

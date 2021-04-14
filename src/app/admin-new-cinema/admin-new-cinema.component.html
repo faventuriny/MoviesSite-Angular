@@ -1,0 +1,96 @@
+<app-alert-changes-saved [display]="displayAlert"></app-alert-changes-saved>
+<div class="general">
+  <div class="inner">
+    <div class="title">Add New Cinema</div>
+    <div class="form">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div>
+          <label>Movie Name: </label>
+          <input
+            formControlName="movieName"
+            for="movieName"
+            type="text"
+            size="17"
+          />
+        </div>
+        <div>
+          <label>Hour: </label>
+          <input
+            formControlName="movieHour"
+            type="text"
+            for="movieHour"
+            size="5"
+          />
+        </div>
+        <div
+          *ngIf="!form.value.movieHour.valid && form.value.movieHour.touched"
+        >
+          <span>The hour must be of the format hh:mm</span>
+        </div>
+        <div>
+          <label>Cinema: </label>
+          <input formControlName="cinema" type="text" for="cinema" size="2" />
+        </div>
+        <div
+          *ngIf="!form.value.movieHour.valid && form.value.movieHour.touched"
+        >
+          <span>Must be a number greater then 0</span>
+        </div>
+        <div>
+          <label>Numbers of Seats: </label>
+          <input
+            formControlName="numbersOfSeats"
+            size="2"
+            type="text"
+            for="numbersOfSeats"
+          />
+        </div>
+        <div
+          *ngIf="!form.value.movieHour.valid && form.value.movieHour.touched"
+        >
+          <span>Must be a number</span>
+        </div>
+        <div>
+          <label>Number of Rows: </label>
+          <input
+            formControlName="numbersOfRows"
+            size="1"
+            type="text"
+            for="numbersOfRows"
+          />
+        </div>
+        <div
+          *ngIf="!form.value.movieHour.valid && form.value.movieHour.touched"
+        >
+          <span>Must be a number</span>
+        </div>
+        <div>
+          <label>Image URL: </label>
+          <input
+            formControlName="moviePic"
+            type="text"
+            for="moviePic"
+            size="17"
+          />
+        </div>
+        <div class="must" *ngIf="!form.valid && form.touched">
+          <span>You must fill all the fiels!</span>
+        </div>
+        <div class="buttons">
+          <button type="submit" [disabled]="!form.valid">
+            <img
+              src="https://cdn2.iconfinder.com/data/icons/web-and-apps-interface/32/OK-512.png"
+              alt="save"
+            />
+          </button>
+          <button type="button" (click)="onCancel()">
+            <img
+              src="https://icon-library.com/images/icon-cancel/icon-cancel-21.jpg"
+              alt="cancel"
+            />
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
