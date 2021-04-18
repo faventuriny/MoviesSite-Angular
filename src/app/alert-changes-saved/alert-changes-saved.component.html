@@ -1,7 +1,12 @@
 <div class="external" *ngIf="display" (click)="closeWindow()">
   <div class="inner">
-    <div class="span">
+    <div class="span" *ngIf="!errorMsg">
       <span>The changes have been saved!</span>
+    </div>
+    <div class="span error" *ngIf="errorMsg">
+      <span>An Error Occurred!</span>
+      <br />
+      <span>{{ errorMsg }}</span>
     </div>
     <div class="button">
       <button (click)="closeWindow()">OK</button>

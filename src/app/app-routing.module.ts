@@ -9,17 +9,13 @@ import { AdminNewCinemaComponent } from './admin-new-cinema/admin-new-cinema.com
 const routes: Routes = [
   { path: '', redirectTo: '/movies-panel', pathMatch: 'full' },
   { path: 'movies-panel', component: MoviesPanelComponent },
-  // {
-  //   path: 'admin', component: AdminComponent, children: [
-  //     { path: '', redirectTo: '/admin', pathMatch: 'full' },
-  //     { path: 'edit', component: AdminEditCinemaComponent },
-  //     { path: 'new', component: AdminNewCinemaComponent },
-  //   ]
-  // }
-  { path: 'admin', component: AdminComponent },
-  { path: 'edit', component: AdminEditCinemaComponent },
-  { path: 'new', component: AdminNewCinemaComponent }
-
+  {
+    path: 'admin', component: AdminComponent, children: [
+      { path: '', redirectTo: '/admin/edit', pathMatch: 'full' },
+      { path: 'edit', component: AdminEditCinemaComponent },
+      { path: 'new', component: AdminNewCinemaComponent },
+    ]
+  }
 ];
 
 @NgModule({

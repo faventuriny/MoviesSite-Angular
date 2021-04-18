@@ -21,20 +21,13 @@ export class CinemasService {
   CreateAndStoreCinema(cinema: Cinema) {
     console.log('CreateAndStoreCinema', cinema);
 
-    this.http.post(
+    return this.http.post(
       this.dataBaseUrl + '.json',
       cinema,
       {
         observe: 'response'
       }
     )
-      .subscribe(resData => {
-        console.log(resData.body);
-
-      }, error => {
-        console.log(error.message);
-        this.error.next(error.message)
-      })
   }
 
   getAllCinemas() {
@@ -55,8 +48,12 @@ export class CinemasService {
   }
 
   updateCinema(index: number, cinemaUpdate: Cinema) {
-    this.allCinemas[index] = cinemaUpdate;
-    this.cinemasListChanged.next(this.allCinemas.slice())
+    console.log('--updateCinema--');
+
+    return this.http.patch(this.dataBaseUrl + '/' + index, cinemaUpdate)
+
+    // this.allCinemas[index] = cinemaUpdate;
+    // this.cinemasListChanged.next(this.allCinemas.slice())
   }
 
   deleteCinema(index: number) {

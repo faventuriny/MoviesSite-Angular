@@ -1,6 +1,10 @@
-<app-alert-changes-saved [display]="displayAlert"></app-alert-changes-saved>
-<div class="general">
-  <div class="inner">
+<app-alert-changes-saved
+  [display]="displayAlert"
+  [errorMsg]="error"
+  (closeAlert)="onCloseAlert()"
+></app-alert-changes-saved>
+<div class="general" *ngIf="isNewFormCinema" (click)="onCloseForm($event)">
+  <div class="inner" (click)="onClickStopPro($event)">
     <div class="title">Add New Cinema</div>
     <div class="form">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -17,23 +21,19 @@
           <label>Hour: </label>
           <input
             formControlName="movieHour"
-            type="text"
+            type="time"
             for="movieHour"
             size="5"
           />
         </div>
-        <div
-          *ngIf="!form.value.movieHour.valid && form.value.movieHour.touched"
-        >
+        <div *ngIf="!movieHour.valid && movieHour.touched">
           <span>The hour must be of the format hh:mm</span>
         </div>
         <div>
           <label>Cinema: </label>
-          <input formControlName="cinema" type="text" for="cinema" size="2" />
+          <input formControlName="cinema" type="number" for="cinema" size="2" />
         </div>
-        <div
-          *ngIf="!form.value.movieHour.valid && form.value.movieHour.touched"
-        >
+        <div *ngIf="!cinema.valid && cinema.touched">
           <span>Must be a number greater then 0</span>
         </div>
         <div>
@@ -41,13 +41,11 @@
           <input
             formControlName="numbersOfSeats"
             size="2"
-            type="text"
+            type="number"
             for="numbersOfSeats"
           />
         </div>
-        <div
-          *ngIf="!form.value.movieHour.valid && form.value.movieHour.touched"
-        >
+        <div *ngIf="!numbersOfSeats.valid && numbersOfSeats.touched">
           <span>Must be a number</span>
         </div>
         <div>
@@ -55,13 +53,11 @@
           <input
             formControlName="numbersOfRows"
             size="1"
-            type="text"
+            type="number"
             for="numbersOfRows"
           />
         </div>
-        <div
-          *ngIf="!form.value.movieHour.valid && form.value.movieHour.touched"
-        >
+        <div *ngIf="!numbersOfRows.valid && numbersOfRows.touched">
           <span>Must be a number</span>
         </div>
         <div>
@@ -72,9 +68,6 @@
             for="moviePic"
             size="17"
           />
-        </div>
-        <div class="must" *ngIf="!form.valid && form.touched">
-          <span>You must fill all the fiels!</span>
         </div>
         <div class="buttons">
           <button type="submit" [disabled]="!form.valid">

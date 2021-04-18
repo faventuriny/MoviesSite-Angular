@@ -1,6 +1,9 @@
 *{
   font-family: Arial, Helvetica, sans-serif;
 }
+body {
+  margin: 0;
+}
 form img {
   margin: 10px 0
 }
@@ -13,6 +16,9 @@ form input {
 }
 form input:focus{
   outline: none;
+}
+.movieName {
+  width: 20vw;
 }
 .buttons {
   display: flex;

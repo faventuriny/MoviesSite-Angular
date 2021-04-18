@@ -1,1 +1,85 @@
-<p>admin-edit-cinema works!</p>
+<app-admin-new-cinema
+  [isNewFormCinema]="isNewFormCinema"
+  (closeWindow)="closeNewCinema()"
+></app-admin-new-cinema>
+<div class="general">
+  <div class="inner-general">
+    <form
+      *ngFor="let form of forms; let i = index"
+      [formGroup]="forms[i]"
+      (ngSubmit)="onSubmit(i)"
+    >
+      <div>
+        <img [src]="form.value.moviePic" [alt]="form.value.movieName" />
+      </div>
+      <div class="movieName">
+        <label>Movie Name: </label>
+        <input
+          for="movieName"
+          type="text"
+          [size]="
+            form.value.movieName.length > 15 ? form.value.movieName.length : 15
+          "
+          [value]="form.value.movieName"
+        />
+      </div>
+      <div>
+        <label>Hour: </label>
+        <input
+          [value]="form.value.movieHour"
+          [size]="form.value.movieHour.length"
+          type="text"
+          for="movieHour"
+        />
+      </div>
+      <div>
+        <label>Cinema: </label>
+        <input [value]="form.value.cinema" size="1" type="text" for="cinema" />
+      </div>
+      <div>
+        <label>Numbers of Seats: </label>
+        <input
+          [value]="form.value.numbersOfSeats"
+          size="2"
+          type="text"
+          for="numbersOfSeats"
+        />
+      </div>
+      <div>
+        <label>Number of Rows: </label>
+        <input
+          [value]="form.value.numbersOfRows"
+          size="1"
+          type="text"
+          for="numbersOfRows"
+        />
+      </div>
+      <div class="buttons">
+        <button type="submit">
+          <img
+            src="https://cdn2.iconfinder.com/data/icons/web-and-apps-interface/32/OK-512.png"
+            alt="save"
+          />
+        </button>
+        <button type="button" (click)="onCancel()">
+          <img
+            src="https://icon-library.com/images/icon-cancel/icon-cancel-21.jpg"
+            alt="cancel"
+          />
+        </button>
+        <button type="button" (click)="onDelete(i)">
+          <img
+            src="https://pics.freeicons.io/uploads/icons/png/14974663671582988848-512.png"
+            alt="Delete"
+          />
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="plus" (click)="addNewCinema()">
+  <img
+    src="https://i.pinimg.com/originals/e2/6f/33/e26f33f35d71a5c5c23b8291d7a2b212.png"
+    alt="add new cinema"
+  />
+</div>

@@ -25,6 +25,8 @@ img {
 }
 .title {
   font-size: 2rem;
+  width: 20vw;
+  text-align: center;
 }
 .details {
   display: flex;

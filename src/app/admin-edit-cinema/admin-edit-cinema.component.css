@@ -1,0 +1,14 @@
+.plus {
+  position: sticky;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+.plus img {
+  width: 80px;
+  height: 80px;
+  border: none;
+}
