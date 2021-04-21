@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 import { CinemasService } from '../cinemas.service';
 import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { Cinema } from '../cinema';
 
 
 @Component({
@@ -10,21 +12,22 @@ import { Subscription } from 'rxjs';
   templateUrl: './admin-new-cinema.component.html',
   styleUrls: ['../admin/admin.component.css', './admin-new-cinema.component.css']
 })
-export class AdminNewCinemaComponent implements OnInit, OnDestroy {
+export class AdminNewCinemaComponent implements OnInit {
 
   constructor(private cinemaService: CinemasService, private fb: FormBuilder) { }
 
   form: FormGroup;
+  id
   movieName
   movieHour
   moviePic
+  releaseDate
   cinema
-  numbersOfSeats
-  numbersOfRows
+  numOfSeats
+  numOfRows
 
   displayAlert = false;
   error = null
-  subscription: Subscription
 
   @Input() isNewFormCinema
   @Output() closeWindow = new EventEmitter()
@@ -35,23 +38,27 @@ export class AdminNewCinemaComponent implements OnInit, OnDestroy {
       movieName: new FormControl('', Validators.compose([Validators.maxLength(30), Validators.required])),
       movieHour: new FormControl('', Validators.compose([Validators.pattern('^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$'), Validators.required])),
       moviePic: new FormControl('', Validators.required),
+      releaseDate: new FormControl('', Validators.required),
       cinema: new FormControl('', Validators.compose([Validators.pattern('^[0-9]+$')])),
-      numbersOfSeats: new FormControl('', Validators.compose([Validators.pattern('^[0-9]+$'), Validators.minLength(1), Validators.required])),
-      numbersOfRows: new FormControl('', Validators.compose([Validators.pattern('^[0-9]+$'), Validators.minLength(1), Validators.required]))
+      numOfSeats: new FormControl('', Validators.compose([Validators.pattern('^[0-9]+$'), Validators.minLength(1), Validators.required])),
+      numOfRows: new FormControl('', Validators.compose([Validators.pattern('^[0-9]+$'), Validators.minLength(1), Validators.required]))
     })
 
     this.movieName = this.form.get('movieName')
     this.movieHour = this.form.get('movieHour')
     this.moviePic = this.form.get('moviePic')
+    this.releaseDate = this.form.get('releaseDate')
     this.cinema = this.form.get('cinema')
-    this.numbersOfSeats = this.form.get('numbersOfSeats')
-    this.numbersOfRows = this.form.get('numbersOfRows')
+    this.numOfSeats = this.form.get('numOfSeats')
+    this.numOfRows = this.form.get('numOfRows')
   }
 
-  onSubmit() {
-    this.subscription = this.cinemaService.CreateAndStoreCinema(this.form.value)
+  onSubmit(cinema: Cinema) {
+    console.log('--onSubmit--, Cinema Data: ', cinema);
+
+    this.cinemaService.CreateAndStoreCinema(cinema)
+      .pipe(take(1))
       .subscribe(resData => {
-        console.log('CreateAndStoreCinema resData:', resData.body);
       }, error => {
         console.log("error:", error.message);
         this.error = error.message
@@ -59,15 +66,15 @@ export class AdminNewCinemaComponent implements OnInit, OnDestroy {
 
     this.displayAlert = true
     this.clearForm()
-
   }
   clearForm() {
     this.movieName.value = ''
     this.movieHour.value = ''
     this.moviePic.value = ''
+    this.releaseDate.value = ''
     this.cinema.value = ''
-    this.numbersOfSeats.value = ''
-    this.numbersOfRows.value = ''
+    this.numOfSeats.value = ''
+    this.numOfRows.value = ''
     this.ngOnInit()
   }
   onCancel() {
@@ -81,9 +88,6 @@ export class AdminNewCinemaComponent implements OnInit, OnDestroy {
   }
   onClickStopPro(event: Event) {
     event.stopPropagation()
-  }
-  ngOnDestroy() {
-    this.subscription.unsubscribe()
   }
   onCloseAlert() {
     this.displayAlert = false

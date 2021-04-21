@@ -2,12 +2,19 @@
   [isNewFormCinema]="isNewFormCinema"
   (closeWindow)="closeNewCinema()"
 ></app-admin-new-cinema>
+<app-alert-changes-saved>
+  [disabley]="displayAlertSave" [errorMsg]="error" (closeAlert)="onCloseAlert()"
+</app-alert-changes-saved>
+<app-alert-cinema-deleted>
+  [disabley]="displayAlertDelete" [errorMsg]="error"
+  (closeAlert)="onCloseAlert()"
+</app-alert-cinema-deleted>
 <div class="general">
   <div class="inner-general">
     <form
       *ngFor="let form of forms; let i = index"
       [formGroup]="forms[i]"
-      (ngSubmit)="onSubmit(i)"
+      (ngSubmit)="onSubmit(form.value.id, form.value)"
     >
       <div>
         <img [src]="form.value.moviePic" [alt]="form.value.movieName" />
@@ -33,13 +40,22 @@
         />
       </div>
       <div>
+        <label>Release Date: </label>
+        <input
+          [value]="form.value.releaseDate | date: 'dd/MM/YYYY'"
+          size="10"
+          type="text"
+          for="movieHour"
+        />
+      </div>
+      <div>
         <label>Cinema: </label>
         <input [value]="form.value.cinema" size="1" type="text" for="cinema" />
       </div>
       <div>
         <label>Numbers of Seats: </label>
         <input
-          [value]="form.value.numbersOfSeats"
+          [value]="form.value.numOfSeats"
           size="2"
           type="text"
           for="numbersOfSeats"
@@ -48,7 +64,7 @@
       <div>
         <label>Number of Rows: </label>
         <input
-          [value]="form.value.numbersOfRows"
+          [value]="form.value.numOfRows"
           size="1"
           type="text"
           for="numbersOfRows"
@@ -67,7 +83,7 @@
             alt="cancel"
           />
         </button>
-        <button type="button" (click)="onDelete(i)">
+        <button type="button" (click)="onDelete(form.value.id)">
           <img
             src="https://pics.freeicons.io/uploads/icons/png/14974663671582988848-512.png"
             alt="Delete"

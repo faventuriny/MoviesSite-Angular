@@ -1,13 +1,11 @@
-<app-alert-changes-saved
-  [display]="displayAlert"
-  [errorMsg]="error"
-  (closeAlert)="onCloseAlert()"
-></app-alert-changes-saved>
+<app-alert-new-cinema-created>
+  [disabley]="displayAlert" [errorMsg]="error" (closeAlert)="onCloseAlert()"
+</app-alert-new-cinema-created>
 <div class="general" *ngIf="isNewFormCinema" (click)="onCloseForm($event)">
   <div class="inner" (click)="onClickStopPro($event)">
     <div class="title">Add New Cinema</div>
     <div class="form">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
         <div>
           <label>Movie Name: </label>
           <input
@@ -30,6 +28,18 @@
           <span>The hour must be of the format hh:mm</span>
         </div>
         <div>
+          <label>Release Date: </label>
+          <input
+            formControlName="releaseDate"
+            type="date"
+            for="releaseDate"
+            size="8"
+          />
+        </div>
+        <div *ngIf="!releaseDate.valid && releaseDate.touched">
+          <span>The release date must be a date</span>
+        </div>
+        <div>
           <label>Cinema: </label>
           <input formControlName="cinema" type="number" for="cinema" size="2" />
         </div>
@@ -39,25 +49,25 @@
         <div>
           <label>Numbers of Seats: </label>
           <input
-            formControlName="numbersOfSeats"
+            formControlName="numOfSeats"
             size="2"
             type="number"
-            for="numbersOfSeats"
+            for="numOfSeats"
           />
         </div>
-        <div *ngIf="!numbersOfSeats.valid && numbersOfSeats.touched">
+        <div *ngIf="!numOfSeats.valid && numOfSeats.touched">
           <span>Must be a number</span>
         </div>
         <div>
           <label>Number of Rows: </label>
           <input
-            formControlName="numbersOfRows"
+            formControlName="numOfRows"
             size="1"
             type="number"
-            for="numbersOfRows"
+            for="numOfRows"
           />
         </div>
-        <div *ngIf="!numbersOfRows.valid && numbersOfRows.touched">
+        <div *ngIf="!numOfRows.valid && numOfRows.touched">
           <span>Must be a number</span>
         </div>
         <div>

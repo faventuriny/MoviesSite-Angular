@@ -11,7 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component';
 import { AdminNewCinemaComponent } from './admin-new-cinema/admin-new-cinema.component';
 import { AdminEditCinemaComponent } from './admin-edit-cinema/admin-edit-cinema.component';
-import { AlertChangesSavedComponent } from './alert-changes-saved/alert-changes-saved.component';
+import { AlertChangesSavedComponent } from './alerts/alert-changes-saved/alert-changes-saved.component';
+import { AlertNewCinemaCreatedComponent } from './alerts/alert-new-cinema-created/alert-new-cinema-created.component';
+import { AlertCinemaDeletedComponent } from './alerts/alert-cinema-deleted/alert-cinema-deleted.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AlertChangesSavedComponent } from './alert-changes-saved/alert-changes-
     AdminComponent,
     AdminNewCinemaComponent,
     AdminEditCinemaComponent,
-    AlertChangesSavedComponent
+    AlertChangesSavedComponent,
+    AlertNewCinemaCreatedComponent,
+    AlertCinemaDeletedComponent
   ],
   imports: [
     BrowserModule,

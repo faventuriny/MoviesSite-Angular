@@ -1,65 +1,74 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
 
 import { CinemasService } from '../cinemas.service';
 import { Cinema } from '../cinema';
+import { take } from 'rxjs/operators';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-admin-edit-cinema',
   templateUrl: './admin-edit-cinema.component.html',
-  styleUrls: ['./admin-edit-cinema.component.css', '../shard/panel.css', '../admin/admin.component.css']
+  styleUrls: ['../shard/panel.css', '../admin/admin.component.css', './admin-edit-cinema.component.css']
 })
 export class AdminEditCinemaComponent implements OnInit {
 
 
   constructor(private cinemaServis: CinemasService) { }
 
-  private subscToUpdate: Subscription;
-  private subscToGet: Subscription;
-  private subscToDel: Subscription;
-  private subscToSub: Subscription;
   cinemasList: Cinema[] = []
   forms: FormGroup[] = []
   isNewFormCinema = false
+
+  displayAlertSave = false;
+  displayAlertDelete = false;
+  error = null
 
   ngOnInit(): void {
     this.getAllCinemas()
   }
 
   getAllCinemas() {
-    this.subscToGet = this.cinemaServis.getAllCinemas().subscribe(data => {
-      this.cinemasList = data
+    this.cinemaServis.getAllCinemas().pipe(take(1)).subscribe(data => {
+      this.cinemasList = <Cinema[]>data
       this.createForms()
     })
   }
   createForms() {
     for (let i = 0; i < this.cinemasList.length; i++) {
       let form = new FormGroup({
+        id: new FormControl(this.cinemasList[i]._id),
         movieName: new FormControl(this.cinemasList[i].movieName, Validators.maxLength(30)),
         movieHour: new FormControl(this.cinemasList[i].movieHour, Validators.pattern('^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$')),
         moviePic: new FormControl(this.cinemasList[i].moviePic),
+        releaseDate: new FormControl(this.cinemasList[i].releaseDate),
         cinema: new FormControl(this.cinemasList[i].cinema, Validators.pattern('^[0-9]+$')),
-        numbersOfSeats: new FormControl(this.cinemasList[i].numbersOfSeats, Validators.compose([Validators.pattern('^[0-9]+$'), Validators.minLength(1)])),
-        numbersOfRows: new FormControl(this.cinemasList[i].numbersOfRows, Validators.compose([Validators.pattern('^[0-9]+$'), Validators.minLength(1)])),
+        numOfSeats: new FormControl(this.cinemasList[i].numOfSeats, Validators.compose([Validators.pattern('^[0-9]+$'), Validators.minLength(1)])),
+        numOfRows: new FormControl(this.cinemasList[i].numOfRows, Validators.compose([Validators.pattern('^[0-9]+$'), Validators.minLength(1)])),
       })
       this.forms.push(form)
     }
     console.log('forms Array:', this.forms);
   }
 
-  onSubmit(index: number) {
-    console.log('--onSubmit--');
+  onSubmit(id: string, cinemaUpdate) {
+    console.log('--onSubmit-- , id: ' + id);
 
-    this.subscToSub = this.cinemaServis.updateCinema(index, this.forms[index].value).subscribe(data => {
+    this.cinemaServis.updateCinema(id, cinemaUpdate).pipe(take(1)).subscribe(data => {
       console.log('onSubmit server data:', data);
+    }, error => {
+      this.error = error.message
     })
+    this.displayAlertSave = true
   }
 
-  onDelete(index: number) {
-    this.subscToDel = this.cinemaServis.deleteCinema(index).subscribe(data => {
+  onDelete(id: string) {
+    this.cinemaServis.deleteCinema(id).pipe(take(1)).subscribe(data => {
       console.log('Delet', data);
+    }, error => {
+      this.error = error.message
     })
+    this.displayAlertDelete = true
   }
 
   onCancel() {
@@ -72,10 +81,9 @@ export class AdminEditCinemaComponent implements OnInit {
   closeNewCinema() {
     this.isNewFormCinema = false
   }
-  ngOnDestroy() {
-    this.subscToUpdate.unsubscribe()
-    this.subscToGet.unsubscribe()
-    this.subscToSub.unsubscribe()
-    this.subscToDel.unsubscribe()
+  onCloseAlert() {
+    this.displayAlertSave = false
+    this.displayAlertDelete = false
+    this.error = null
   }
 }

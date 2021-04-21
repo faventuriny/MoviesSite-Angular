@@ -1,8 +1,10 @@
 export interface Cinema {
+  _id?: String
   movieName: string
   movieHour: string
   moviePic: string
+  releaseDate: Date
   cinema: number
-  numbersOfSeats: number
-  numbersOfRows: number
+  numOfSeats: number
+  numOfRows: number
 }

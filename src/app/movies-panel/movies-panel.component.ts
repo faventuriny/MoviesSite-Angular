@@ -2,17 +2,17 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CinemasService } from '../cinemas.service';
 import { Cinema } from '../cinema';
 import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movies-panel',
   templateUrl: './movies-panel.component.html',
-  styleUrls: ['./movies-panel.component.css', '../shard/panel.css']
+  styleUrls: ['../shard/panel.css', './movies-panel.component.css']
 })
-export class MoviesPanelComponent implements OnInit, OnDestroy {
+export class MoviesPanelComponent implements OnInit {
 
   constructor(private cinemaServis: CinemasService) { }
   allCinemas: Cinema[]
-  subscToGet: Subscription
 
 
   ngOnInit(): void {
@@ -20,12 +20,11 @@ export class MoviesPanelComponent implements OnInit, OnDestroy {
   }
 
   getAllCinemas() {
-    this.subscToGet = this.cinemaServis.getAllCinemas().subscribe(data => {
-      this.allCinemas = data
+    this.cinemaServis.getAllCinemas().pipe(take(1)).subscribe(data => {
+      console.log(data);
+
+      this.allCinemas = <Cinema[]>data
     })
-  }
-  ngOnDestroy() {
-    this.subscToGet.unsubscribe()
   }
 
 }

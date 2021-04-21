@@ -20,8 +20,10 @@
 }
 img {
   width: 20vw;
+  height: 30vw;
   border: 1px solid gray;
   border-radius: 5px;
+  margin-top: 20px;
 }
 .title {
   font-size: 2rem;
@@ -31,7 +33,7 @@ img {
 .details {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 20vw;
   padding-bottom: 10px;
 }
 .details span {
