@@ -1,6 +1,11 @@
 <div class="panel">
   <div class="search">
-    <input type="text" class="input" placeholder="Search Movie" />
+    <input
+      type="text"
+      class="input"
+      placeholder="Search Movie"
+      (input)="onChangeInput($event.target.value)"
+    />
   </div>
   <div class="sort">
     <select

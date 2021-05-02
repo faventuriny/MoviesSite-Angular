@@ -11,6 +11,8 @@ export class SearchPanelComponent implements OnInit {
   @Output() newScreeningTimeEvent = new EventEmitter<string>()
   @Output() newNameEvent = new EventEmitter<string>()
 
+  @Output() newInputEvent = new EventEmitter<string>()
+
 
   constructor() { }
 
@@ -27,8 +29,9 @@ export class SearchPanelComponent implements OnInit {
       case "name": this.newNameEvent.emit('')
         break;
     }
-
-
+  }
+  onChangeInput(eventValue: string) {
+    this.newInputEvent.emit(eventValue)
   }
 
 
