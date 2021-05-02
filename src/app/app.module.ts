@@ -14,6 +14,8 @@ import { AdminEditCinemaComponent } from './admin-edit-cinema/admin-edit-cinema.
 import { AlertChangesSavedComponent } from './alerts/alert-changes-saved/alert-changes-saved.component';
 import { AlertNewCinemaCreatedComponent } from './alerts/alert-new-cinema-created/alert-new-cinema-created.component';
 import { AlertCinemaDeletedComponent } from './alerts/alert-cinema-deleted/alert-cinema-deleted.component';
+import { AlertCinemaDeleteQuastionComponent } from './alerts/alert-cinema-delete-quastion/alert-cinema-delete-quastion.component';
+import { SearchPanelComponent } from './search-panel/search-panel.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { AlertCinemaDeletedComponent } from './alerts/alert-cinema-deleted/alert
     AdminEditCinemaComponent,
     AlertChangesSavedComponent,
     AlertNewCinemaCreatedComponent,
-    AlertCinemaDeletedComponent
+    AlertCinemaDeletedComponent,
+    AlertCinemaDeleteQuastionComponent,
+    SearchPanelComponent
   ],
   imports: [
     BrowserModule,

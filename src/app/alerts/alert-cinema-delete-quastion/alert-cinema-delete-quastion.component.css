@@ -1,0 +1,13 @@
+.buttons{
+  display: flex;
+}
+.button button{
+  background: none;
+}
+.button button:active{
+  outline: none;
+}
+.button img {
+  width: 30px;
+  height: 30px;
+}

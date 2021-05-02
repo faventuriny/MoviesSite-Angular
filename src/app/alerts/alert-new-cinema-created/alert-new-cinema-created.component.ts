@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import * as EventEmitter from 'events';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-alert-new-cinema-created',
@@ -8,10 +8,9 @@ import * as EventEmitter from 'events';
 })
 export class AlertNewCinemaCreatedComponent implements OnInit {
 
-  @Input() display: boolean = false;
   @Input() errorMsg
 
-  @Output() closeAlert = new EventEmitter()
+  @Output() closeAlert: EventEmitter<any> = new EventEmitter()
 
   constructor() { }
 

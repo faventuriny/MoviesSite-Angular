@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { CinemasService } from '../cinemas.service';
 import { Cinema } from '../cinema';
 import { take } from 'rxjs/operators';
-import { error } from 'protractor';
+import * as EventEmitter from 'events';
 
 @Component({
   selector: 'app-admin-edit-cinema',
@@ -18,14 +18,21 @@ export class AdminEditCinemaComponent implements OnInit {
 
   cinemasList: Cinema[] = []
   forms: FormGroup[] = []
-  isNewFormCinema = false
 
+  isNewFormCinema = false
+  displayAlertNewCinemaCreated = false
   displayAlertSave = false;
   displayAlertDelete = false;
+  displayAlertDeleteQuestion = false
   error = null
+
+  deletID = null
 
   ngOnInit(): void {
     this.getAllCinemas()
+
+    console.log("this.displayAlertNewCinemaCreated", this.displayAlertNewCinemaCreated);
+
   }
 
   getAllCinemas() {
@@ -51,24 +58,37 @@ export class AdminEditCinemaComponent implements OnInit {
     console.log('forms Array:', this.forms);
   }
 
-  onSubmit(id: string, cinemaUpdate) {
-    console.log('--onSubmit-- , id: ' + id);
+  onSubmit(i: number) {
 
-    this.cinemaServis.updateCinema(id, cinemaUpdate).pipe(take(1)).subscribe(data => {
-      console.log('onSubmit server data:', data);
+    this.cinemaServis.updateCinema(this.forms[i].value.id, this.forms[i].value).pipe(take(1)).subscribe(data => {
+      console.log('server respons data:', data);
+      this.displayAlertSave = true
+      console.log("displayAlertSave:", this.displayAlertSave);
+
     }, error => {
       this.error = error.message
+      this.displayAlertSave = true
     })
-    this.displayAlertSave = true
   }
+  openAlertNewCinemaSaved(event: EventEmitter) {
+    this.error = event
+    this.displayAlertNewCinemaCreated = true
+  }
+  shouldDelet(id: string) {
+    this.deletID = id
+    this.displayAlertDeleteQuestion = true;
+    console.log("this.displayAlertDeleteQuestion", this.displayAlertDeleteQuestion);
 
-  onDelete(id: string) {
-    this.cinemaServis.deleteCinema(id).pipe(take(1)).subscribe(data => {
-      console.log('Delet', data);
+  }
+  onDelete() {
+    this.cinemaServis.deleteCinema(this.deletID).pipe(take(1)).subscribe(data => {
+      this.displayAlertDeleteQuestion = false
+      this.displayAlertDelete = true
     }, error => {
       this.error = error.message
+      this.displayAlertDeleteQuestion = false
+      this.displayAlertDelete = true
     })
-    this.displayAlertDelete = true
   }
 
   onCancel() {
@@ -84,6 +104,11 @@ export class AdminEditCinemaComponent implements OnInit {
   onCloseAlert() {
     this.displayAlertSave = false
     this.displayAlertDelete = false
+    this.displayAlertDeleteQuestion = false
+    this.displayAlertNewCinemaCreated = false
     this.error = null
+    this.deletID = null
+    window.location.reload()
   }
+
 }

@@ -1,20 +1,40 @@
 <app-admin-new-cinema
   [isNewFormCinema]="isNewFormCinema"
   (closeWindow)="closeNewCinema()"
+  (openAlertSaved)="openAlertNewCinemaSaved($event)"
 ></app-admin-new-cinema>
-<app-alert-changes-saved>
-  [disabley]="displayAlertSave" [errorMsg]="error" (closeAlert)="onCloseAlert()"
-</app-alert-changes-saved>
-<app-alert-cinema-deleted>
-  [disabley]="displayAlertDelete" [errorMsg]="error"
+<app-alert-new-cinema-created
+  *ngIf="displayAlertNewCinemaCreated"
+  [errorMsg]="error"
   (closeAlert)="onCloseAlert()"
+>
+</app-alert-new-cinema-created>
+<app-alert-changes-saved
+  [display]="displayAlertSave"
+  [errorMsg]="error"
+  (closeAlert)="onCloseAlert()"
+  *ngIf="displayAlertSave"
+>
+</app-alert-changes-saved>
+<app-alert-cinema-delete-quastion
+  *ngIf="displayAlertDeleteQuestion"
+  (deleteMovie)="onDelete()"
+  (closeAlert)="onCloseAlert()"
+>
+</app-alert-cinema-delete-quastion>
+<app-alert-cinema-deleted
+  [display]="displayAlertDelete"
+  [errorMsg]="error"
+  (closeAlert)="onCloseAlert()"
+>
 </app-alert-cinema-deleted>
+
 <div class="general">
   <div class="inner-general">
     <form
       *ngFor="let form of forms; let i = index"
       [formGroup]="forms[i]"
-      (ngSubmit)="onSubmit(form.value.id, form.value)"
+      (ngSubmit)="onSubmit(i)"
     >
       <div>
         <img [src]="form.value.moviePic" [alt]="form.value.movieName" />
@@ -28,6 +48,7 @@
             form.value.movieName.length > 15 ? form.value.movieName.length : 15
           "
           [value]="form.value.movieName"
+          formControlName="movieName"
         />
       </div>
       <div>
@@ -37,6 +58,7 @@
           [size]="form.value.movieHour.length"
           type="text"
           for="movieHour"
+          formControlName="movieHour"
         />
       </div>
       <div>
@@ -45,12 +67,19 @@
           [value]="form.value.releaseDate | date: 'dd/MM/YYYY'"
           size="10"
           type="text"
-          for="movieHour"
+          for="releaseDate"
+          formControlName="releaseDate"
         />
       </div>
       <div>
         <label>Cinema: </label>
-        <input [value]="form.value.cinema" size="1" type="text" for="cinema" />
+        <input
+          [value]="form.value.cinema"
+          size="1"
+          type="text"
+          for="cinema"
+          formControlName="cinema"
+        />
       </div>
       <div>
         <label>Numbers of Seats: </label>
@@ -58,7 +87,8 @@
           [value]="form.value.numOfSeats"
           size="2"
           type="text"
-          for="numbersOfSeats"
+          for="numOfSeats"
+          formControlName="numOfSeats"
         />
       </div>
       <div>
@@ -67,7 +97,17 @@
           [value]="form.value.numOfRows"
           size="1"
           type="text"
-          for="numbersOfRows"
+          for="numOfRows"
+          formControlName="numOfRows"
+        />
+      </div>
+      <div>
+        <label>Img URL:</label>
+        <input
+          [value]="form.value.moviePic"
+          type="text"
+          for="moviePic"
+          formControlName="moviePic"
         />
       </div>
       <div class="buttons">
@@ -83,7 +123,7 @@
             alt="cancel"
           />
         </button>
-        <button type="button" (click)="onDelete(form.value.id)">
+        <button type="button" (click)="shouldDelet(form.value.id)">
           <img
             src="https://pics.freeicons.io/uploads/icons/png/14974663671582988848-512.png"
             alt="Delete"

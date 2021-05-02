@@ -1,3 +1,8 @@
+<app-search-panel
+  (newReleaseDateEvent)="onReleaseDateSort()"
+  (newScreeningTimeEvent)="onScreeningTimeSort()"
+  (newNameEvent)="onNameSort()"
+></app-search-panel>
 <div class="general">
   <div class="inner-general">
     <div *ngFor="let cinemaData of allCinemas">
@@ -9,7 +14,9 @@
           <span>Cinema {{ cinemaData.cinema }}</span>
         </div>
         <div class="details">
-          <span>Date Relece {{ cinemaData.releaseDate | date: "dd/MM" }}</span>
+          <span
+            >Date Relece {{ cinemaData.releaseDate | date: "dd/MM/YY" }}</span
+          >
         </div>
       </div>
     </div>

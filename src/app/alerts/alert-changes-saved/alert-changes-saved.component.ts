@@ -10,7 +10,7 @@ export class AlertChangesSavedComponent implements OnInit {
   @Input() display: boolean = false;
   @Input() errorMsg
 
-  @Output() closeAlert = new EventEmitter()
+  @Output() closeAlert: EventEmitter<any> = new EventEmitter()
 
   constructor() { }
 

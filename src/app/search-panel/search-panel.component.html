@@ -1,0 +1,20 @@
+<div class="panel">
+  <div class="search">
+    <input type="text" class="input" placeholder="Search Movie" />
+  </div>
+  <div class="sort">
+    <select
+      name="sort"
+      id="sort"
+      class="select"
+      (change)="onChangeSelect($event.target.value)"
+    >
+      <option value="" disabled selected>Sort by...</option>
+      <option value="releaseDate" class="option">Sort by release date</option>
+      <option value="screeningTime" class="option">
+        Sort by screening time
+      </option>
+      <option value="name" class="option">Sort by movie name</option>
+    </select>
+  </div>
+</div>

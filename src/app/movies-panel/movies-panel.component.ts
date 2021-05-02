@@ -26,5 +26,14 @@ export class MoviesPanelComponent implements OnInit {
       this.allCinemas = <Cinema[]>data
     })
   }
+  onReleaseDateSort() {
+    this.allCinemas.sort((a, b) => (a.releaseDate > b.releaseDate) ? -1 : 1)
+  }
+  onScreeningTimeSort() {
+    this.allCinemas.sort((a, b) => (a.movieHour > b.movieHour) ? 1 : -1)
+  }
+  onNameSort() {
+    this.allCinemas.sort((a, b) => (a.movieName > b.movieName) ? 1 : -1)
+  }
 
 }

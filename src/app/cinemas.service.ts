@@ -36,7 +36,8 @@ export class CinemasService {
   }
 
   updateCinema(id: string, cinemaUpdate: Cinema) {
-    console.log('--updateCinema--');
+    console.log('--updateCinema-- ', cinemaUpdate);
+    console.log('--id-- ', id);
 
     return this.http.patch(this.dataBaseUrl + 'cinema/' + id, cinemaUpdate)
 

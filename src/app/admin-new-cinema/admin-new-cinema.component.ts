@@ -26,11 +26,12 @@ export class AdminNewCinemaComponent implements OnInit {
   numOfSeats
   numOfRows
 
-  displayAlert = false;
-  error = null
+  // displayAlert = false;
+  // error = null
 
   @Input() isNewFormCinema
   @Output() closeWindow = new EventEmitter()
+  @Output() openAlertSaved = new EventEmitter()
 
 
   ngOnInit(): void {
@@ -59,13 +60,14 @@ export class AdminNewCinemaComponent implements OnInit {
     this.cinemaService.CreateAndStoreCinema(cinema)
       .pipe(take(1))
       .subscribe(resData => {
+        this.openAlertSaved.emit('')
       }, error => {
         console.log("error:", error.message);
-        this.error = error.message
+        this.openAlertSaved.emit(error)
       })
 
-    this.displayAlert = true
     this.clearForm()
+    this.closeWindow.emit("")
   }
   clearForm() {
     this.movieName.value = ''
@@ -89,8 +91,8 @@ export class AdminNewCinemaComponent implements OnInit {
   onClickStopPro(event: Event) {
     event.stopPropagation()
   }
-  onCloseAlert() {
-    this.displayAlert = false
-  }
+  // onCloseAlert() {
+  //   this.displayAlert = false
+  // }
 
 }
