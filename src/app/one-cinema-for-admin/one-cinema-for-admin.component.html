@@ -1,0 +1,113 @@
+<app-alert-changes-saved
+  [display]="displayAlertSave"
+  [errorMsg]="error"
+  (closeAlert)="onCloseAlert()"
+  *ngIf="displayAlertSave"
+>
+</app-alert-changes-saved>
+<app-alert-cinema-delete-quastion
+  *ngIf="displayAlertDeleteQuestion"
+  (deleteMovie)="onDelete()"
+  (closeAlert)="onCloseAlert()"
+>
+</app-alert-cinema-delete-quastion>
+<app-alert-cinema-deleted
+  [display]="displayAlertDelete"
+  [errorMsg]="error"
+  (closeAlert)="onCloseAlertCinemaDeleted()"
+>
+</app-alert-cinema-deleted>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <img
+      [src]="form.value.moviePic"
+      onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5DvwDQtYeXQ7e3eQcz9kC_23Qmw8cF7BJ_UP3CD1xEj_cM1Im2MB3Jmvm9dDF3AwizrA&usqp=CAU'"
+      [alt]="form.value.movieName"
+    />
+  </div>
+  <div class="movieName">
+    <label>Movie Name: </label>
+    <input
+      for="movieName"
+      type="text"
+      [size]="
+        form.value.movieName.length > 15 ? form.value.movieName.length : 15
+      "
+      [value]="form.value.movieName"
+      formControlName="movieName"
+    />
+  </div>
+  <div>
+    <label>Hour: </label>
+    <input
+      [value]="form.value.movieHour"
+      [size]="form.value.movieHour.length"
+      type="text"
+      for="movieHour"
+      formControlName="movieHour"
+    />
+  </div>
+  <div>
+    <label>Release Date: </label>
+    <input
+      [value]="form.value.releaseDate | date: 'dd/MM/YYYY'"
+      size="10"
+      type="text"
+      for="releaseDate"
+      formControlName="releaseDate"
+    />
+  </div>
+  <div>
+    <label>Cinema: </label>
+    <input
+      [value]="form.value.cinema"
+      size="1"
+      type="text"
+      for="cinema"
+      formControlName="cinema"
+    />
+  </div>
+  <div>
+    <label>Numbers of Seats: </label>
+    <input
+      [value]="form.value.numOfSeats"
+      size="2"
+      type="text"
+      for="numOfSeats"
+      formControlName="numOfSeats"
+    />
+  </div>
+  <div>
+    <label>Number of Rows: </label>
+    <input
+      [value]="form.value.numOfRows"
+      size="1"
+      type="text"
+      for="numOfRows"
+      formControlName="numOfRows"
+    />
+  </div>
+  <div>
+    <label>Img URL:</label>
+    <input
+      [value]="form.value.moviePic"
+      type="text"
+      for="moviePic"
+      formControlName="moviePic"
+    />
+  </div>
+  <div class="buttons">
+    <button type="submit">
+      <img
+        src="https://cdn2.iconfinder.com/data/icons/web-and-apps-interface/32/OK-512.png"
+        alt="save"
+      />
+    </button>
+    <button type="button" (click)="shouldDelet(form.value.id)">
+      <img
+        src="https://pics.freeicons.io/uploads/icons/png/14974663671582988848-512.png"
+        alt="Delete"
+      />
+    </button>
+  </div>
+</form>

@@ -22,7 +22,7 @@ form input:focus{
 }
 .buttons {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   margin-top: 15px;
 }
 .buttons button {

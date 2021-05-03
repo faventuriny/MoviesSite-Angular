@@ -5,7 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { ClientComponent } from './client/client.component';
 import { MoviesPanelComponent } from './movies-panel/movies-panel.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component';
@@ -16,12 +15,15 @@ import { AlertNewCinemaCreatedComponent } from './alerts/alert-new-cinema-create
 import { AlertCinemaDeletedComponent } from './alerts/alert-cinema-deleted/alert-cinema-deleted.component';
 import { AlertCinemaDeleteQuastionComponent } from './alerts/alert-cinema-delete-quastion/alert-cinema-delete-quastion.component';
 import { SearchPanelComponent } from './search-panel/search-panel.component';
+import { CreateNewAccountComponent } from './authentication/create-new-account/create-new-account.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { OneCinemaForPanelComponent } from './one-cinema-for-panel/one-cinema-for-panel.component';
+import { OneCinemaForAdminComponent } from './one-cinema-for-admin/one-cinema-for-admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ClientComponent,
     MoviesPanelComponent,
     AdminComponent,
     AdminNewCinemaComponent,
@@ -30,7 +32,11 @@ import { SearchPanelComponent } from './search-panel/search-panel.component';
     AlertNewCinemaCreatedComponent,
     AlertCinemaDeletedComponent,
     AlertCinemaDeleteQuastionComponent,
-    SearchPanelComponent
+    SearchPanelComponent,
+    CreateNewAccountComponent,
+    LoginComponent,
+    OneCinemaForPanelComponent,
+    OneCinemaForAdminComponent
   ],
   imports: [
     BrowserModule,

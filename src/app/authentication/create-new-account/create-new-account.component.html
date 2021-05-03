@@ -1,0 +1,51 @@
+<div class="general">
+  <div class="inner">
+    <div class="title">Create a New Account</div>
+    <div class="form">
+      <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <div>
+          <input
+            formControlName="name"
+            type="text"
+            placeholder="Name"
+            class="input"
+          />
+        </div>
+        <div>
+          <input
+            formControlName="email"
+            type="text"
+            placeholder="Email"
+            class="input"
+          />
+        </div>
+        <div>
+          <input
+            formControlName="password"
+            type="password"
+            placeholder="Password"
+            class="input"
+          />
+        </div>
+        <div>
+          <input
+            formControlName="passwordConfirm"
+            type="password"
+            placeholder="Password Confirm"
+            class="input"
+          />
+        </div>
+        <div class="button">
+          <div>
+            <button type="submit" [disabled]="!form.valid">
+              Create New Account
+            </button>
+          </div>
+          <div>
+            <a routerLink="/login">Login</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

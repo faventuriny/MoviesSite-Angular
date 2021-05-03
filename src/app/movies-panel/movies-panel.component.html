@@ -7,19 +7,9 @@
 <div class="general">
   <div class="inner-general">
     <div *ngFor="let cinemaData of allCinemas">
-      <div class="movie">
-        <img [src]="cinemaData.moviePic" [alt]="cinemaData.movieName" />
-        <span class="title">{{ cinemaData.movieName }}</span>
-        <div class="details">
-          <span>{{ cinemaData.movieHour }}</span>
-          <span>Cinema {{ cinemaData.cinema }}</span>
-        </div>
-        <div class="details">
-          <span
-            >Date Relece {{ cinemaData.releaseDate | date: "dd/MM/YY" }}</span
-          >
-        </div>
-      </div>
+      <app-one-cinema-for-panel
+        [cinema]="cinemaData"
+      ></app-one-cinema-for-panel>
     </div>
   </div>
 </div>

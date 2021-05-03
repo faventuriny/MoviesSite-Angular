@@ -1,0 +1,11 @@
+<div class="movie">
+  <img [src]="cinema.moviePic" [alt]="cinema.movieName" />
+  <span class="title">{{ cinema.movieName }}</span>
+  <div class="details">
+    <span>{{ cinema.movieHour }}</span>
+    <span>Cinema {{ cinema.cinema }}</span>
+  </div>
+  <div class="details">
+    <span>Date Relece {{ cinema.releaseDate | date: "dd/MM/YY" }}</span>
+  </div>
+</div>
