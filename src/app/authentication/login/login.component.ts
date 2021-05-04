@@ -18,6 +18,10 @@ export class LoginComponent implements OnInit {
   password
 
   ngOnInit(): void {
+    if (sessionStorage.getItem('userName') !== null) {
+      this.router.navigateByUrl('/movies-panel')
+    }
+
     this.form = this.fb.group({
       email: new FormControl('', Validators.compose([Validators.email, Validators.required])),
       password: new FormControl('', Validators.compose([Validators.minLength(4), Validators.required])),
@@ -34,9 +38,10 @@ export class LoginComponent implements OnInit {
       .subscribe(resData => {
         console.log('resData', resData);
         let res: any = resData
-        console.log('res.body.token', res.body.token);
         sessionStorage.setItem('token', res.body.token);
-        this.router.navigateByUrl('/movies-panel')
+        sessionStorage.setItem('userName', res.body.user.name)
+        sessionStorage.setItem('isAdmin', res.body.user.admin)
+        window.location.reload()
       }, error => {
         console.log('error', error.message);
       })

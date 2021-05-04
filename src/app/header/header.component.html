@@ -1,7 +1,15 @@
-<div class="logo">FLORENCIA'S MOVIES</div>
-<div class="header">
-  <div class="inner-header">
-    <span class="movies">Movies</span>
-    <span class="login">Login</span>
+<div class="general">
+  <div class="inner">
+    <div class="logo">
+      <a routerLink="/">FLORENCIA'S MOVIES</a>
+    </div>
+    <div class="header">
+      <a class="{{ this.loginClass }}" routerLink="{{ this.link }}">{{
+        this.status
+      }}</a>
+      <a class="createAccount" routerLink="/create-new-account">{{
+        this.createNewAccount
+      }}</a>
+    </div>
   </div>
 </div>

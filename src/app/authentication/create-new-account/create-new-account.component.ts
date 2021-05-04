@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { CinemasService } from 'src/app/cinemas.service';
-import { User } from 'src/app/user';
 import { UserService } from 'src/app/user.service';
 import { take } from 'rxjs/operators';
 
