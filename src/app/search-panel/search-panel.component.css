@@ -4,6 +4,10 @@
   align-items: center;
   padding: 10px;
   background: #9CBED3;
+  position: sticky;
+  top: 10vh;
+  left: 0;
+  box-shadow: 2px 4px 8px gray;
 }
 .select, .input{
   padding: 5px 10px;

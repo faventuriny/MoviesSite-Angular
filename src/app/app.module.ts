@@ -19,6 +19,7 @@ import { CreateNewAccountComponent } from './authentication/create-new-account/c
 import { LoginComponent } from './authentication/login/login.component';
 import { OneCinemaForPanelComponent } from './one-cinema-for-panel/one-cinema-for-panel.component';
 import { OneCinemaForAdminComponent } from './one-cinema-for-admin/one-cinema-for-admin.component';
+import { SeatsSelectionComponent } from './seats-selection/seats-selection.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { OneCinemaForAdminComponent } from './one-cinema-for-admin/one-cinema-fo
     CreateNewAccountComponent,
     LoginComponent,
     OneCinemaForPanelComponent,
-    OneCinemaForAdminComponent
+    OneCinemaForAdminComponent,
+    SeatsSelectionComponent
   ],
   imports: [
     BrowserModule,

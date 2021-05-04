@@ -30,9 +30,12 @@ export class CinemasService {
   }
 
   getAllCinemas() {
-
     return this.http
       .get(this.dataBaseUrl + 'cinemas', this.reqOption)
+  }
+
+  getOneCinema(id: string) {
+    return this.http.get(this.dataBaseUrl + 'cinema' + '/' + id)
   }
 
   updateCinema(id: string, cinemaUpdate: Cinema) {

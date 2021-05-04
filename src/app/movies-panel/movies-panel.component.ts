@@ -21,12 +21,14 @@ export class MoviesPanelComponent implements OnInit {
   }
 
   getAllCinemas() {
-    this.cinemaServis.getAllCinemas().pipe(take(1)).subscribe(data => {
-      console.log(data);
+    this.cinemaServis.getAllCinemas()
+      .pipe(take(1))
+      .subscribe(data => {
+        console.log(data);
 
-      this.allCinemas = <Cinema[]>data
-      this.allCinemasBackup = <Cinema[]>data
-    })
+        this.allCinemas = <Cinema[]>data
+        this.allCinemasBackup = <Cinema[]>data
+      })
   }
   onReleaseDateSort() {
     this.allCinemas.sort((a, b) => (a.releaseDate > b.releaseDate) ? -1 : 1)
