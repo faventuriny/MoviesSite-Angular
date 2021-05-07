@@ -1,0 +1,18 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 10px 0;
+}
+.title {
+  font-size: 1.8rem;
+}
+.details {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+.details div {
+  margin: 10px 10px;
+}

@@ -19,7 +19,10 @@ import { CreateNewAccountComponent } from './authentication/create-new-account/c
 import { LoginComponent } from './authentication/login/login.component';
 import { OneCinemaForPanelComponent } from './one-cinema-for-panel/one-cinema-for-panel.component';
 import { OneCinemaForAdminComponent } from './one-cinema-for-admin/one-cinema-for-admin.component';
-import { SeatsSelectionComponent } from './seats-selection/seats-selection.component';
+import { SeatsSelectionComponent } from './seat-selection/seats-selection/seats-selection.component';
+import { SeatsSelectionMapComponent } from './seat-selection/seats-selection-map/seats-selection-map.component';
+import { SeatSelectionMovieDetailsComponent } from './seat-selection/seat-selection-movie-details/seat-selection-movie-details.component';
+import { SeatSelectionDoSelectComponent } from './seat-selection/seat-selection-do-select/seat-selection-do-select.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { SeatsSelectionComponent } from './seats-selection/seats-selection.compo
     LoginComponent,
     OneCinemaForPanelComponent,
     OneCinemaForAdminComponent,
-    SeatsSelectionComponent
+    SeatsSelectionComponent,
+    SeatsSelectionMapComponent,
+    SeatSelectionMovieDetailsComponent,
+    SeatSelectionDoSelectComponent
   ],
   imports: [
     BrowserModule,

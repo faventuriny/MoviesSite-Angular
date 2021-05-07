@@ -19,7 +19,7 @@ export class CinemasService {
 
   CreateAndStoreCinema(cinema: Cinema) {
     console.log('--service--');
-
+    cinema.availableSeats = this.addEmptySeats(cinema.numOfSeats, cinema.numOfRows)
     return this.http.post(
       this.dataBaseUrl + 'new',
       cinema,
@@ -52,6 +52,20 @@ export class CinemasService {
     return this.http.delete(this.dataBaseUrl + 'cinema/' + id)
     // this.allCinemas.splice(index, 1)
     // this.cinemasListChanged.next(this.allCinemas.slice())
+  }
+
+  addEmptySeats(seats: number, rows: number) {
+    let arrayOfAllSeats = []
+    let seatsPerRow = seats / rows
+
+    for (let i = 0; i < rows; i++) {
+      let seatsAvailableInRow = []
+      for (let i = 0; i < seatsPerRow; i++) {
+        seatsAvailableInRow.push(false)
+      }
+      arrayOfAllSeats.push(seatsAvailableInRow)
+    }
+    return arrayOfAllSeats
   }
 
 

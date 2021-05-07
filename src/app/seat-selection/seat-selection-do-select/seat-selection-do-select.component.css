@@ -1,0 +1,64 @@
+.general {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.screen {
+  width: 80%;
+  height: 10px;
+  background: black;
+}
+.span {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.span-right, .span-left {
+  width: 2px;
+  height: 50px;
+  background: black;
+  margin: 0 60px;
+}
+.span-left {
+  transform: skew(45deg);
+}
+.span-right {
+  transform: skew(135deg);
+}
+.rowContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+input.checkbox-checked[type=checkbox]{
+    appearance: none;
+    background: grey;
+    padding: 6.5px;
+    border-radius: 3px;
+    /* margin-top: 20px; */
+}
+/* input.checkbox[type=checkbox]:checked{
+  appearance: none;
+  background: red;
+  padding: 8px;
+  border-radius: 3px;
+} */
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.button button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background:  #1D3557;
+  color: white;
+  font-size: 1.1rem;
+  box-shadow: 2px 4px 8px gray;
+  cursor: pointer;
+}

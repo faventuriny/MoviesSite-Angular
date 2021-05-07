@@ -7,4 +7,5 @@ export interface Cinema {
   cinema: number
   numOfSeats: number
   numOfRows: number
+  availableSeats?
 }

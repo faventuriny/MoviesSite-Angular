@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CinemasService } from '../cinemas.service';
+import { CinemasService } from '../../cinemas.service';
 import { take } from 'rxjs/operators';
-import { Cinema } from '../cinema';
+import { Cinema } from '../../cinema';
 
 @Component({
   selector: 'app-seats-selection',
@@ -31,8 +31,6 @@ export class SeatsSelectionComponent implements OnInit {
       })
   }
 
-  // setId(event) {
-  //   console.log(event);
-  // }
+
 
 }

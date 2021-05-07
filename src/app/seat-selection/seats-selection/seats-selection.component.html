@@ -1,0 +1,14 @@
+<div class="general">
+  <div class="section">
+    <div class="img">
+      <app-seat-selection-movie-details
+        [cinema]="cinema"
+      ></app-seat-selection-movie-details>
+      <app-seats-selection-map></app-seats-selection-map>
+      <img src="{{ this.cinema.moviePic }}" alt="{{ this.cinema.movieName }}" />
+    </div>
+    <app-seat-selection-do-select
+      [cinema]="cinema"
+    ></app-seat-selection-do-select>
+  </div>
+</div>

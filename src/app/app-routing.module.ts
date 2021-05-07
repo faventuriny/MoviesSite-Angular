@@ -7,7 +7,7 @@ import { AdminEditCinemaComponent } from './admin-edit-cinema/admin-edit-cinema.
 import { CreateNewAccountComponent } from './authentication/create-new-account/create-new-account.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { AdminNewCinemaComponent } from './admin-new-cinema/admin-new-cinema.component';
-import { SeatsSelectionComponent } from './seats-selection/seats-selection.component';
+import { SeatsSelectionComponent } from './seat-selection/seats-selection/seats-selection.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/movies-panel', pathMatch: 'full' },

@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angu
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 import { CinemasService } from '../cinemas.service';
-import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Cinema } from '../cinema';
 
@@ -69,6 +68,7 @@ export class AdminNewCinemaComponent implements OnInit {
     this.clearForm()
     this.closeWindow.emit("")
   }
+
   clearForm() {
     this.movieName.value = ''
     this.movieHour.value = ''
